@@ -1,0 +1,1799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soko Edit - Trending finds, delivered in Kenya</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f6f3ee;
+  --surface: #ffffff;
+  --surface-alt: #f1ede5;
+  --ink: #1c1b19;
+  --muted: #6b675f;
+  --line: #e2ddd3;
+  --line-strong: #1c1b19;
+  --accent: #1f4d3a;
+  --accent-hover: #153527;
+  --accent-soft: #e7efe9;
+  --on: #ffffff;
+  --focus-ring: 2px solid #1f4d3a;
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.55 "DM Sans", system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+.wrap {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+header {
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 30;
+}
+header .wrap {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  height: 70px;
+}
+.logo-group {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  text-decoration: none;
+  color: var(--ink);
+}
+.logo {
+  font: 600 24px "Fraunces", Georgia, serif;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.logo-tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent);
+  background: var(--accent-soft);
+  padding: 2px 7px;
+  border-radius: 3px;
+}
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.cartbtn {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-weight: 500;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+.cartbtn:hover {
+  border-color: var(--ink);
+}
+.cartbtn .badge {
+  background: var(--accent);
+  color: var(--on);
+  font-size: 12px;
+  font-weight: 700;
+  padding: 1px 7px;
+  border-radius: 3px;
+  min-width: 18px;
+  text-align: center;
+}
+
+/* Hero */
+.hero {
+  padding: 44px 0 28px;
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.hero-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+.hero h1 {
+  font: 600 clamp(32px, 5vw, 52px)/1.08 "Fraunces", Georgia, serif;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+  max-width: 16em;
+}
+.hero p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.5;
+  max-width: 38em;
+  margin: 0 0 22px;
+}
+.trust-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.badge-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 6px 12px;
+}
+.badge-item svg {
+  color: var(--accent);
+  flex-shrink: 0;
+}
+
+/* Control Bar: Filters & Search */
+.controls-bar {
+  padding: 24px 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+@media (min-width: 768px) {
+  .controls-bar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+.chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.chip {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  color: var(--ink);
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.chip:hover {
+  border-color: var(--ink);
+}
+.chip[aria-pressed="true"] {
+  background: var(--ink);
+  color: var(--on);
+  border-color: var(--ink);
+}
+.filter-tools {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.search-box {
+  position: relative;
+  min-width: 200px;
+  flex: 1;
+}
+.search-box svg {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  pointer-events: none;
+}
+.search-input {
+  width: 100%;
+  padding: 8px 10px 8px 34px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+}
+.search-input:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+.sort-select {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--surface);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+}
+.sort-select:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+
+/* Product Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
+  padding: 12px 0 56px;
+}
+.empty-state {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 48px 20px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+}
+.empty-state h3 {
+  font: 600 20px "Fraunces", Georgia, serif;
+  margin: 0 0 8px;
+}
+.empty-state p {
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+
+/* Card */
+.card {
+  display: flex;
+  flex-direction: column;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.card:hover {
+  border-color: #c4beb3;
+}
+.tile-wrap {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  background: var(--surface-alt);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.tile-wrap svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.card-tags {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  display: flex;
+  gap: 6px;
+  z-index: 2;
+}
+.tag {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--ink);
+  padding: 3px 8px;
+  border-radius: 3px;
+  border: 1px solid rgba(0,0,0,0.06);
+}
+.tag.spec-tag {
+  background: rgba(31, 77, 58, 0.1);
+  color: var(--accent);
+  border-color: rgba(31, 77, 58, 0.2);
+}
+.card-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card h3 {
+  font: 600 18px/1.25 "Fraunces", Georgia, serif;
+  margin: 0 0 6px;
+  letter-spacing: -0.01em;
+}
+.card p.desc {
+  margin: 0 0 10px;
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+  flex: 1;
+}
+.card-specs {
+  font-size: 12px;
+  color: var(--muted);
+  background: var(--bg);
+  padding: 6px 10px;
+  border-radius: 3px;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.card-specs svg {
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.card-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.price {
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+.card-actions {
+  display: flex;
+  gap: 6px;
+}
+.btn-view {
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+.btn-view:hover {
+  border-color: var(--ink);
+}
+.btn-add {
+  background: var(--accent);
+  color: var(--on);
+  border: 1px solid var(--accent);
+  padding: 8px 14px;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.15s ease;
+}
+.btn-add:hover {
+  background: var(--accent-hover);
+}
+
+/* Promise Section */
+.promise {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 40px 0;
+  background: var(--surface);
+}
+.promise .wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+.promise-card {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+}
+.promise-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent);
+}
+.promise-text b {
+  display: block;
+  font-family: "Fraunces", Georgia, serif;
+  font-weight: 600;
+  font-size: 17px;
+  margin-bottom: 4px;
+}
+.promise-text span {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.45;
+}
+
+/* Footer */
+footer {
+  padding: 40px 0;
+  color: var(--muted);
+  font-size: 14px;
+  background: var(--bg);
+}
+.foot-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+@media (min-width: 768px) {
+  .foot-grid {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.foot-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.foot-meta b {
+  color: var(--ink);
+  font-family: "Fraunces", Georgia, serif;
+}
+.foot-nav {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.foot-nav a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.foot-nav a:hover {
+  color: var(--ink);
+}
+
+/* Cart Aside Drawer */
+aside {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100%);
+  background: var(--surface);
+  border-left: 1px solid var(--line);
+  transform: translateX(100%);
+  transition: transform 0.25s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  padding-top: calc(24px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 50;
+  box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+}
+aside.open {
+  transform: none;
+}
+aside header.drawer-hdr {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--line);
+  background: none;
+  position: static;
+  height: auto;
+}
+aside header.drawer-hdr h2 {
+  font: 600 22px "Fraunces", Georgia, serif;
+  margin: 0;
+}
+.btn-close {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  color: var(--ink);
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.btn-close:hover {
+  border-color: var(--ink);
+}
+.items-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+.cart-item {
+  display: grid;
+  grid-template-columns: 56px 1fr auto;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+  align-items: center;
+}
+.cart-thumb {
+  width: 56px;
+  height: 56px;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cart-thumb svg {
+  width: 100%;
+  height: 100%;
+}
+.cart-info b {
+  display: block;
+  font-size: 14px;
+  color: var(--ink);
+}
+.cart-info span {
+  font-size: 13px;
+  color: var(--muted);
+}
+.qty-controls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.qty-controls button {
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--line);
+  background: var(--bg);
+  color: var(--ink);
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.qty-controls button:hover {
+  border-color: var(--ink);
+}
+.qty-count {
+  font-size: 13px;
+  font-weight: 600;
+  min-width: 18px;
+  text-align: center;
+}
+.cart-calc {
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
+  margin-top: 10px;
+}
+.calc-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+.calc-row.total-row {
+  font-size: 17px;
+  font-weight: 700;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  margin-top: 8px;
+  color: var(--ink);
+}
+.delivery-options {
+  margin: 14px 0;
+}
+.delivery-label {
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  display: block;
+  margin-bottom: 6px;
+}
+.delivery-select {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+}
+.delivery-select:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+.checkout-fields {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.field-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 14px;
+}
+.field-input:focus {
+  outline: none;
+  border-color: var(--ink);
+}
+.btn-checkout {
+  width: 100%;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--on);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 12px;
+  transition: background-color 0.15s ease;
+}
+.btn-checkout:hover {
+  background: var(--accent-hover);
+}
+.btn-paylink {
+  width: 100%;
+  padding: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--surface);
+  color: var(--ink);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+  margin-top: 8px;
+  cursor: pointer;
+}
+.btn-paylink:hover {
+  border-color: var(--ink);
+}
+.note {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.4;
+  margin: 10px 0 0;
+}
+.veil {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  display: none;
+  z-index: 40;
+}
+.veil.open {
+  display: block;
+}
+
+/* Quick View Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 60;
+}
+.modal-overlay.open {
+  display: flex;
+}
+.modal-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  max-width: 680px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  box-shadow: 0 12px 36px rgba(0,0,0,0.15);
+}
+@media (min-width: 640px) {
+  .modal-card {
+    grid-template-columns: 280px 1fr;
+  }
+}
+.modal-visual {
+  background: var(--surface-alt);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--line);
+}
+@media (min-width: 640px) {
+  .modal-visual {
+    border-bottom: none;
+    border-right: 1px solid var(--line);
+  }
+}
+.modal-visual svg {
+  max-width: 220px;
+  width: 100%;
+  height: auto;
+}
+.modal-content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+.modal-close {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.modal-close:hover {
+  border-color: var(--ink);
+}
+.modal-category {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  margin-bottom: 4px;
+}
+.modal-title {
+  font: 600 22px/1.25 "Fraunces", Georgia, serif;
+  margin: 0 0 10px;
+  letter-spacing: -0.01em;
+}
+.modal-price {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.modal-desc {
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--muted);
+  margin: 0 0 16px;
+}
+.modal-specs-list {
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  padding: 12px;
+  margin-bottom: 18px;
+}
+.modal-specs-list b {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.modal-specs-list ul {
+  margin: 0;
+  padding-left: 18px;
+  font-size: 13px;
+  color: var(--ink);
+}
+.modal-specs-list li {
+  margin-bottom: 4px;
+}
+.modal-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: auto;
+}
+.modal-qty {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--bg);
+}
+.modal-qty button {
+  width: 34px;
+  height: 40px;
+  border: none;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+.modal-qty span {
+  width: 28px;
+  text-align: center;
+  font-weight: 600;
+  font-size: 14px;
+}
+.modal-add {
+  flex: 1;
+  background: var(--accent);
+  color: var(--on);
+  border: none;
+  border-radius: 4px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+.modal-add:hover {
+  background: var(--accent-hover);
+}
+
+/* Toast */
+.toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(120%);
+  background: var(--ink);
+  color: var(--on);
+  padding: 12px 18px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  z-index: 70;
+  transition: transform 0.25s ease-out;
+}
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+}
+.toast button {
+  background: rgba(255,255,255,0.2);
+  border: none;
+  color: var(--on);
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+  cursor: pointer;
+}
+.toast button:hover {
+  background: rgba(255,255,255,0.3);
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a href="index.html" class="logo-group">
+      <span class="logo">Soko Edit</span>
+      <span class="logo-tag">Kenya</span>
+    </a>
+    <div class="header-actions">
+      <button class="cartbtn" id="open" aria-label="View shopping bag">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <span>Bag</span>
+        <span class="badge" id="bag-count">0</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="wrap">
+      <span class="hero-tag">Curated Kenya Catalog</span>
+      <h1>What everyone's watching, on your doorstep.</h1>
+      <p>A short, tested list of the products going round on TikTok right now: skincare, home, tech and pets. Pay with M-Pesa or card, delivered across Kenya.</p>
+      <div class="trust-badges">
+        <div class="badge-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect><line x1="1" y1="10" x2="23" y2="10"></line></svg>
+          <span>Pay via M-Pesa or Card</span>
+        </div>
+        <div class="badge-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+          <span>Nairobi 1-2 days &middot; Countrywide 2-4 days</span>
+        </div>
+        <div class="badge-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path></svg>
+          <span>7-day return guarantee</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter & Search Controls -->
+  <section class="wrap">
+    <div class="controls-bar">
+      <div class="chips" id="chips" role="group" aria-label="Filter by category"></div>
+      <div class="filter-tools">
+        <div class="search-box">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+          <input type="text" class="search-input" id="search-input" placeholder="Search catalog..." aria-label="Search catalog">
+        </div>
+        <select class="sort-select" id="sort-select" aria-label="Sort products">
+          <option value="featured">Sort: Featured</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid" id="grid"></div>
+  </section>
+
+  <!-- Store Promises -->
+  <section class="promise">
+    <div class="wrap">
+      <div class="promise-card">
+        <div class="promise-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+        </div>
+        <div class="promise-text">
+          <b>Pay your way</b>
+          <span>M-Pesa, Airtel Money or card at checkout.</span>
+        </div>
+      </div>
+      <div class="promise-card">
+        <div class="promise-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+        </div>
+        <div class="promise-text">
+          <b>Nairobi in 1-2 days</b>
+          <span>Countrywide delivery in 2-4 days.</span>
+        </div>
+      </div>
+      <div class="promise-card">
+        <div class="promise-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+        </div>
+        <div class="promise-text">
+          <b>7-day returns</b>
+          <span>Faulty or not as described? We'll sort it.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-meta">
+        <b>Soko Edit</b>
+        <span>&copy; Soko Edit &middot; Mombasa, Kenya &middot; Orders and support on WhatsApp</span>
+      </div>
+      <nav class="foot-nav" aria-label="Legal and support links">
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms and Conditions</a>
+        <a href="https://wa.me/254700000000" target="_blank" rel="noopener">WhatsApp Support</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+
+<!-- Background Veil -->
+<div class="veil" id="veil"></div>
+
+<!-- Slide-over Shopping Bag -->
+<aside id="cart" aria-label="Shopping bag">
+  <header class="drawer-hdr">
+    <h2>Your bag</h2>
+    <button class="btn-close" id="close" aria-label="Close bag">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+  </header>
+  <div class="items-list" id="items"></div>
+  <div id="cart-footer"></div>
+</aside>
+
+<!-- Quick View Modal -->
+<div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close" aria-label="Close details">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+    </button>
+    <div class="modal-visual" id="modal-visual"></div>
+    <div class="modal-content">
+      <div class="modal-category" id="modal-category"></div>
+      <h3 class="modal-title" id="modal-title"></h3>
+      <div class="modal-price" id="modal-price"></div>
+      <p class="modal-desc" id="modal-desc"></p>
+      <div class="modal-specs-list">
+        <b>What is in the box</b>
+        <ul id="modal-box-list"></ul>
+      </div>
+      <div class="modal-actions">
+        <div class="modal-qty">
+          <button id="modal-qty-minus" aria-label="Decrease quantity">-</button>
+          <span id="modal-qty-val">1</span>
+          <button id="modal-qty-plus" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="modal-add" id="modal-add-btn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          Add to bag
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Notification -->
+<div class="toast" id="toast">
+  <span id="toast-msg">Item added to bag</span>
+  <button id="toast-view">View Bag</button>
+</div>
+
+<script>
+const CONFIG = {
+  currency: "KES",
+  whatsapp: "254700000000",   // seller WhatsApp number (digits only, country code 254)
+  paymentLink: ""             // optional payment link (Paystack / Flutterwave / IntaSend)
+};
+
+/* Bespoke, authentic product SVGs: Clean technical and studio illustrations */
+const ART = {
+  p1: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#f4efe8"/>
+    <!-- Cleanser Bottle -->
+    <rect x="25" y="65" width="46" height="95" rx="5" fill="#e8e2d8" stroke="#1c1b19" stroke-width="2.5"/>
+    <rect x="38" y="47" width="20" height="18" fill="#ffffff" stroke="#1c1b19" stroke-width="2.5"/>
+    <path d="M48 47 V37 H64" fill="none" stroke="#1c1b19" stroke-width="2.5" stroke-linecap="round"/>
+    <rect x="32" y="85" width="32" height="42" fill="#ffffff" stroke="#1c1b19" stroke-width="1.5"/>
+    <line x1="37" y1="95" x2="59" y2="95" stroke="#1c1b19" stroke-width="2"/>
+    <line x1="37" y1="102" x2="54" y2="102" stroke="#6b675f" stroke-width="1.5"/>
+    <!-- Dropper Serum Bottle (Amber) -->
+    <rect x="85" y="75" width="42" height="85" rx="5" fill="#c47d3d" stroke="#1c1b19" stroke-width="2.5"/>
+    <rect x="96" y="60" width="20" height="15" fill="#1c1b19"/>
+    <path d="M101 60 C101 48 111 48 111 60 Z" fill="#ffffff" stroke="#1c1b19" stroke-width="2"/>
+    <rect x="90" y="94" width="32" height="38" fill="#fcfbf9" stroke="#1c1b19" stroke-width="1.5"/>
+    <line x1="95" y1="103" x2="117" y2="103" stroke="#1c1b19" stroke-width="2"/>
+    <line x1="95" y1="110" x2="112" y2="110" stroke="#6b675f" stroke-width="1.5"/>
+    <!-- Moisture Cream Jar -->
+    <rect x="138" y="110" width="46" height="50" rx="4" fill="#ffffff" stroke="#1c1b19" stroke-width="2.5"/>
+    <rect x="135" y="98" width="52" height="12" rx="2" fill="#d9d2c5" stroke="#1c1b19" stroke-width="2.5"/>
+    <line x1="145" y1="126" x2="177" y2="126" stroke="#1c1b19" stroke-width="2"/>
+    <line x1="148" y1="133" x2="174" y2="133" stroke="#6b675f" stroke-width="1.5"/>
+  </svg>`,
+
+  p2: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#f0eae1"/>
+    <!-- Lash Compact Case Opened -->
+    <rect x="30" y="45" width="140" height="88" rx="6" fill="#242320" stroke="#1c1b19" stroke-width="2.5"/>
+    <rect x="38" y="53" width="124" height="72" rx="4" fill="#ffffff" stroke="#1c1b19" stroke-width="1.5"/>
+    <!-- Lash Bands -->
+    <path d="M50 78 Q75 62 100 78" fill="none" stroke="#1c1b19" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M54 75 L50 67 M62 71 L60 62 M74 69 L74 59 M86 71 L88 62 M96 75 L100 67" stroke="#1c1b19" stroke-width="1.5"/>
+    <path d="M104 78 Q129 62 154 78" fill="none" stroke="#1c1b19" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M108 75 L104 67 M116 71 L114 62 M128 69 L128 59 M140 71 L142 62 M150 75 L154 67" stroke="#1c1b19" stroke-width="1.5"/>
+    <!-- Magnetic Liner Tube -->
+    <rect x="40" y="100" width="70" height="14" rx="3" fill="#1c1b19"/>
+    <rect x="110" y="102" width="40" height="10" rx="2" fill="#c47d3d"/>
+    <!-- Precision Tweezers -->
+    <path d="M35 156 L150 142 C165 140 172 147 165 155 L45 168 Z" fill="#b88358" stroke="#1c1b19" stroke-width="2"/>
+  </svg>`,
+
+  p3: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#f4ecec"/>
+    <!-- Rose Quartz Roller -->
+    <!-- Handle -->
+    <rect x="74" y="80" width="14" height="65" rx="7" fill="#eab5bb" stroke="#1c1b19" stroke-width="2.5"/>
+    <!-- Upper Gold Bracket & Roller -->
+    <path d="M64 80 L64 56 C64 50 98 50 98 56 L98 80" fill="none" stroke="#b89344" stroke-width="3"/>
+    <rect x="52" y="38" width="58" height="18" rx="7" fill="#df9fac" stroke="#1c1b19" stroke-width="2.5"/>
+    <!-- Lower Gold Bracket & Small Roller -->
+    <path d="M70 145 L70 162 C70 166 92 166 92 162 L92 145" fill="none" stroke="#b89344" stroke-width="3"/>
+    <rect x="62" y="162" width="38" height="14" rx="5" fill="#df9fac" stroke="#1c1b19" stroke-width="2.5"/>
+    <!-- Heart Gua Sha Stone -->
+    <path d="M130 65 C118 60 114 74 124 95 C134 116 142 142 162 146 C176 148 182 130 176 108 C170 86 160 62 144 65 C139 66 134 68 130 65 Z" fill="#df9fac" stroke="#1c1b19" stroke-width="2.5"/>
+  </svg>`,
+
+  p4: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#1f1e1c"/>
+    <!-- Warm Golden Sun Aura -->
+    <circle cx="100" cy="85" r="54" fill="#d97706" opacity="0.35"/>
+    <circle cx="100" cy="85" r="38" fill="#f59e0b" opacity="0.7"/>
+    <circle cx="100" cy="85" r="22" fill="#fef3c7"/>
+    <!-- Lamp Head & Optical Lens -->
+    <circle cx="100" cy="85" r="28" fill="none" stroke="#ffffff" stroke-width="3"/>
+    <circle cx="100" cy="85" r="25" fill="none" stroke="#1c1b19" stroke-width="2"/>
+    <!-- Articulated Bracket -->
+    <path d="M100 113 L100 132" stroke="#e5e5e5" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="100" cy="120" r="4" fill="#1c1b19"/>
+    <!-- Stand Rod & Heavy Base -->
+    <line x1="100" y1="132" x2="100" y2="168" stroke="#a3a3a3" stroke-width="5"/>
+    <ellipse cx="100" cy="170" rx="34" ry="9" fill="#262626" stroke="#e5e5e5" stroke-width="2.5"/>
+  </svg>`,
+
+  p5: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#edf2ee"/>
+    <!-- Vapor Plume -->
+    <path d="M100 50 Q94 38 102 28 Q108 18 98 10" fill="none" stroke="#9bbbb0" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
+    <path d="M104 48 Q112 36 106 24" fill="none" stroke="#9bbbb0" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+    <!-- Diffuser Ribbed Ceramic Body -->
+    <rect x="62" y="55" width="76" height="105" rx="6" fill="#ffffff" stroke="#1c1b19" stroke-width="2.5"/>
+    <!-- Ceramic Vertical Ribs -->
+    <line x1="74" y1="58" x2="74" y2="152" stroke="#ded8ce" stroke-width="2"/>
+    <line x1="87" y1="58" x2="87" y2="152" stroke="#ded8ce" stroke-width="2"/>
+    <line x1="100" y1="58" x2="100" y2="152" stroke="#ded8ce" stroke-width="2"/>
+    <line x1="113" y1="58" x2="113" y2="152" stroke="#ded8ce" stroke-width="2"/>
+    <line x1="126" y1="58" x2="126" y2="152" stroke="#ded8ce" stroke-width="2"/>
+    <!-- Vapor Nozzle Top -->
+    <path d="M92 55 L96 48 H104 L108 55 Z" fill="#1c1b19"/>
+    <!-- Base & Touch Switch -->
+    <rect x="58" y="155" width="84" height="12" rx="3" fill="#363430" stroke="#1c1b19" stroke-width="2"/>
+    <circle cx="100" cy="138" r="4" fill="#1f4d3a"/>
+  </svg>`,
+
+  p6: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#e8eced"/>
+    <!-- Anodized Matte Gray Power Bank -->
+    <rect x="54" y="32" width="92" height="136" rx="14" fill="#343940" stroke="#1c1b19" stroke-width="2.5"/>
+    <!-- MagSafe Ring and Alignment Pill -->
+    <circle cx="100" cy="94" r="28" fill="none" stroke="#606770" stroke-width="3" stroke-dasharray="4 2"/>
+    <rect x="98" y="126" width="4" height="12" rx="2" fill="#606770"/>
+    <!-- Battery Level LED Indicators -->
+    <circle cx="85" cy="46" r="2" fill="#ffffff"/>
+    <circle cx="95" cy="46" r="2" fill="#ffffff"/>
+    <circle cx="105" cy="46" r="2" fill="#ffffff"/>
+    <circle cx="115" cy="46" r="2" fill="#ffffff"/>
+    <!-- Bottom USB-C Port -->
+    <rect x="91" y="162" width="18" height="4" rx="2" fill="#1c1b19"/>
+  </svg>`,
+
+  p7: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#ebeeed"/>
+    <!-- Weighted Charging Base -->
+    <rect x="36" y="142" width="128" height="22" rx="5" fill="#2d3238" stroke="#1c1b19" stroke-width="2.5"/>
+    <!-- AirPods Recessed Pad -->
+    <ellipse cx="68" cy="153" rx="16" ry="6" fill="#1c1b19"/>
+    <!-- Upright Support Stem -->
+    <path d="M124 142 L112 65" stroke="#1c1b19" stroke-width="6" stroke-linecap="round"/>
+    <!-- Angled MagSafe Phone Charging Puck -->
+    <rect x="76" y="42" width="48" height="60" rx="6" fill="#424850" stroke="#1c1b19" stroke-width="2.5" transform="rotate(-12 100 72)"/>
+    <circle cx="100" cy="72" r="14" fill="none" stroke="#7c8591" stroke-width="2.5"/>
+    <!-- Watch Charging Disc on Side Arm -->
+    <path d="M117 96 L144 92" stroke="#1c1b19" stroke-width="4" stroke-linecap="round"/>
+    <circle cx="152" cy="92" r="12" fill="#ffffff" stroke="#1c1b19" stroke-width="2"/>
+  </svg>`,
+
+  p8: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <rect width="200" height="200" fill="#edf2ee"/>
+    <!-- Basin Body -->
+    <rect x="42" y="68" width="116" height="96" rx="10" fill="#ffffff" stroke="#1c1b19" stroke-width="2.5"/>
+    <!-- 304 Stainless Steel Top Bowl -->
+    <ellipse cx="100" cy="70" rx="58" ry="14" fill="#d8dcde" stroke="#1c1b19" stroke-width="2.5"/>
+    <ellipse cx="100" cy="71" rx="46" ry="9" fill="#bec4c7"/>
+    <!-- Sprout Water Stream -->
+    <rect x="96" y="52" width="8" height="20" rx="3" fill="#1f4d3a"/>
+    <path d="M96 56 Q85 64 85 70" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+    <path d="M104 56 Q115 64 115 70" fill="none" stroke="#3b82f6" stroke-width="2" stroke-linecap="round"/>
+    <!-- Front Water Level Window -->
+    <rect x="94" y="98" width="12" height="48" rx="6" fill="#1c1b19"/>
+    <rect x="96" y="112" width="8" height="32" rx="4" fill="#38bdf8"/>
+  </svg>`
+};
+
+/* Products catalog with realistic, honest specifications and box contents */
+const P = [
+  {
+    id: 1,
+    n: "Collagen Glow Set",
+    c: "Beauty",
+    d: "Cleanser, serum and cream in one routine.",
+    p: 3200,
+    artKey: "p1",
+    spec: "3-piece kit · 120ml, 30ml, 50ml",
+    badge: "Full routine",
+    full: "A structured three-step morning and night regimen formulated with plant peptides, multi-molecular hyaluronic acid and niacinamide. Formulated for Nairobi and Mombasa climate variations to protect against dehydration and barrier fatigue.",
+    box: [
+      "Gentle Gel Cleanser (120ml pump bottle)",
+      "Multi-Peptide Collagen Serum (30ml glass dropper bottle)",
+      "Barrier Moisture Cream (50ml twist jar)",
+      "Skin routine usage card"
+    ]
+  },
+  {
+    id: 2,
+    n: "Magnetic Lash Kit",
+    c: "Beauty",
+    d: "Reusable lashes with magnetic liner, no glue.",
+    p: 1800,
+    artKey: "p2",
+    spec: "2 lash pairs · 5ml liner · applicator",
+    badge: "Glue-free",
+    full: "Lightweight synthetic silk lash bands embedded with 5 micro-magnets that adhere to the smudge-resistant polymer magnetic eyeliner. Eliminates sticky adhesive and can be reused up to 35 times when cleaned and stored in the compact.",
+    box: [
+      "Natural Day Lash Band Pair",
+      "Full Volume Evening Lash Band Pair",
+      "Smudge-proof Magnetic Liquid Liner (5ml)",
+      "Precision Ergonomic Lash Applicator"
+    ]
+  },
+  {
+    id: 3,
+    n: "Gua Sha & Roller Set",
+    c: "Beauty",
+    d: "Rose quartz tools for a ten-minute facial.",
+    p: 1500,
+    artKey: "p3",
+    spec: "100% natural rose quartz · gold brackets",
+    badge: "Natural stone",
+    full: "Handcrafted from natural Xiuyan rose quartz. Features dual-bracket silent silicone rollers for morning de-puffing and tension relief along the jawline, accompanied by a 3-point sculpted heart stone for facial acupressure.",
+    box: [
+      "Dual-Ended Rose Quartz Roller",
+      "Sculpted Heart Gua Sha Stone",
+      "Velvet Travel Pouch",
+      "Facial Massage Direction Guide"
+    ]
+  },
+  {
+    id: 4,
+    n: "Sunset Projection Lamp",
+    c: "Home",
+    d: "Warm golden-hour light for any room.",
+    p: 2400,
+    artKey: "p4",
+    spec: "10W optical lens · 360-deg rotation · USB",
+    badge: "Warm amber",
+    full: "Produces a clean, spherical golden-hour sunset gradient. Engineered with a high-transmittance optical condenser crystal lens and a matte-black aluminum housing on an articulated 360-degree rotating brass joint.",
+    box: [
+      "10W Optical Sunset Projection Lamp",
+      "1.5m Reinforced USB Power Cable",
+      "Weighted Desktop Pedestal Base"
+    ]
+  },
+  {
+    id: 5,
+    n: "Cordless Aroma Diffuser",
+    c: "Home",
+    d: "Quiet, rechargeable, runs up to 8 hours.",
+    p: 2900,
+    artKey: "p5",
+    spec: "150ml tank · 2,000 mAh battery · USB-C",
+    badge: "Rechargeable",
+    full: "Ultrasonic cold-mist diffuser that operates without tangled power cables. Emits a whisper-quiet mist for up to 8 hours on a single charge and includes automatic dry-burn shutoff protection.",
+    box: [
+      "Cordless Ribbed Ceramic-Touch Diffuser (150ml)",
+      "USB-C Charging Cable",
+      "Instruction Manual"
+    ]
+  },
+  {
+    id: 6,
+    n: "MagSafe Power Bank",
+    c: "Tech",
+    d: "10,000 mAh, snaps onto your phone.",
+    p: 3800,
+    artKey: "p6",
+    spec: "10,000 mAh · 15W wireless · 20W PD",
+    badge: "Fast charge",
+    full: "Equipped with strong N52 neodymium magnets that lock precisely onto magnetic phone backs and cases. Provides 15W inductive fast charging and up to 20W wired Power Delivery via bidirectional USB-C.",
+    box: [
+      "10,000 mAh Magnetic Power Bank",
+      "USB-C to USB-C Braided Cable (30cm)",
+      "Safety and Certification Card"
+    ]
+  },
+  {
+    id: 7,
+    n: "3-in-1 Magnetic Charger",
+    c: "Tech",
+    d: "Phone, earbuds and watch on one stand.",
+    p: 4500,
+    artKey: "p7",
+    spec: "15W phone + 5W buds + 3W watch · folding",
+    badge: "Multi-device",
+    full: "Consolidate your nightstand into a single clean cable setup. Charges your phone at up to 15W, smartwatch at 3W, and wireless earbuds case at 5W simultaneously with integrated temperature control.",
+    box: [
+      "3-in-1 Folding Aluminum Charging Stand",
+      "1.2m Fast USB-C Cable",
+      "Quick Setup Manual"
+    ]
+  },
+  {
+    id: 8,
+    n: "Pet Water Fountain",
+    c: "Pets",
+    d: "Filtered, whisper-quiet, 2-litre capacity.",
+    p: 3600,
+    artKey: "p8",
+    spec: "2.0L capacity · 304 stainless tray · <20dB",
+    badge: "Quad-filter",
+    full: "Encourages hydration with continuously circulating, oxygenated water. Built with a hygienic 304 food-grade stainless steel top basin, an ultra-silent 5V pump, and a quad-stage activated carbon and ion filter.",
+    box: [
+      "2.0L Water Reservoir with 304 Stainless Basin",
+      "Silent 5V Submersible Water Pump",
+      "2 Multi-Stage Replacement Filter Cartridges",
+      "USB Power Cable"
+    ]
+  }
+];
+
+const fmt = n => CONFIG.currency + " " + n.toLocaleString("en-KE");
+
+let currentCategory = "All";
+let searchQuery = "";
+let sortOrder = "featured";
+let bag = {};
+let activeModalProduct = null;
+let modalQty = 1;
+let deliveryFee = 250; // default Nairobi standard
+
+try {
+  bag = JSON.parse(localStorage.getItem("soko_bag") || "{}");
+} catch(e) {
+  bag = {};
+}
+
+const $ = id => document.getElementById(id);
+const saveBag = () => {
+  try {
+    localStorage.setItem("soko_bag", JSON.stringify(bag));
+  } catch(e) {}
+};
+
+function renderChips() {
+  const categories = ["All", ...new Set(P.map(x => x.c))];
+  $("chips").innerHTML = categories.map(c => `
+    <button class="chip" aria-pressed="${c === currentCategory}" data-category="${c}">
+      ${c}
+    </button>
+  `).join("");
+}
+
+function getFilteredProducts() {
+  return P.filter(x => {
+    const matchCat = currentCategory === "All" || x.c === currentCategory;
+    const matchSearch = !searchQuery || 
+      x.n.toLowerCase().includes(searchQuery) || 
+      x.d.toLowerCase().includes(searchQuery) ||
+      x.c.toLowerCase().includes(searchQuery);
+    return matchCat && matchSearch;
+  }).sort((a, b) => {
+    if (sortOrder === "price-asc") return a.p - b.p;
+    if (sortOrder === "price-desc") return b.p - a.p;
+    if (sortOrder === "name") return a.n.localeCompare(b.n);
+    return a.id - b.id;
+  });
+}
+
+function renderGrid() {
+  const items = getFilteredProducts();
+  if (items.length === 0) {
+    $("grid").innerHTML = `
+      <div class="empty-state">
+        <h3>No matching items found</h3>
+        <p>Try adjusting your search terms or clearing the category filter.</p>
+        <button class="chip" id="btn-reset-filters">Show all products</button>
+      </div>
+    `;
+    return;
+  }
+
+  $("grid").innerHTML = items.map(x => `
+    <article class="card">
+      <div class="tile-wrap" data-view="${x.id}" title="Click to view details for ${x.n}">
+        <div class="card-tags">
+          <span class="tag">${x.c}</span>
+          <span class="tag spec-tag">${x.badge}</span>
+        </div>
+        ${ART[x.artKey]}
+      </div>
+      <div class="card-body">
+        <h3>${x.n}</h3>
+        <p class="desc">${x.d}</p>
+        <div class="card-specs">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+          <span>${x.spec}</span>
+        </div>
+        <div class="card-foot">
+          <span class="price">${fmt(x.p)}</span>
+          <div class="card-actions">
+            <button class="btn-view" data-view="${x.id}">Details</button>
+            <button class="btn-add" data-add="${x.id}">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </article>
+  `).join("");
+}
+
+function getSubtotal() {
+  return Object.entries(bag).reduce((sum, [id, qty]) => {
+    const item = P.find(x => x.id === parseInt(id, 10));
+    return sum + (item ? item.p * qty : 0);
+  }, 0);
+}
+
+function getTotalQuantity() {
+  return Object.values(bag).reduce((sum, qty) => sum + qty, 0);
+}
+
+function showToast(msg) {
+  const toast = $("toast");
+  $("toast-msg").textContent = msg;
+  toast.classList.add("show");
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => {
+    toast.classList.remove("show");
+  }, 3500);
+}
+
+function renderCart() {
+  const ids = Object.keys(bag).filter(id => bag[id] > 0);
+  const totalQty = getTotalQuantity();
+  const subtotal = getSubtotal();
+  const grandTotal = subtotal > 0 ? subtotal + deliveryFee : 0;
+
+  $("bag-count").textContent = totalQty;
+
+  if (ids.length === 0) {
+    $("items").innerHTML = `
+      <div style="text-align:center; padding: 48px 12px; color: var(--muted);">
+        <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin-bottom:12px;" aria-hidden="true"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+        <p style="margin:0 0 8px; font-weight:600; color:var(--ink);">Your bag is currently empty.</p>
+        <span style="font-size:13px;">Explore our catalog and add items directly.</span>
+      </div>
+    `;
+    $("cart-footer").innerHTML = "";
+    saveBag();
+    return;
+  }
+
+  $("items").innerHTML = ids.map(id => {
+    const item = P.find(x => x.id === parseInt(id, 10));
+    if (!item) return "";
+    return `
+      <div class="cart-item">
+        <div class="cart-thumb">${ART[item.artKey]}</div>
+        <div class="cart-info">
+          <b>${item.n}</b>
+          <span>${fmt(item.p)} each</span>
+        </div>
+        <div class="qty-controls">
+          <button data-qty-id="${id}" data-delta="-1" aria-label="Decrease quantity">-</button>
+          <span class="qty-count">${bag[id]}</span>
+          <button data-qty-id="${id}" data-delta="1" aria-label="Increase quantity">+</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  $("cart-footer").innerHTML = `
+    <div class="cart-calc">
+      <div class="calc-row">
+        <span>Subtotal</span>
+        <b>${fmt(subtotal)}</b>
+      </div>
+      <div class="delivery-options">
+        <label class="delivery-label" for="delivery-select">Delivery Destination</label>
+        <select class="delivery-select" id="delivery-select">
+          <option value="250" ${deliveryFee === 250 ? "selected" : ""}>Nairobi (1-2 business days) &middot; KES 250</option>
+          <option value="350" ${deliveryFee === 350 ? "selected" : ""}>Countrywide Courier (2-4 business days) &middot; KES 350</option>
+          <option value="0" ${deliveryFee === 0 ? "selected" : ""}>Mombasa Pickup (Old Town Hub) &middot; Free</option>
+        </select>
+      </div>
+      <div class="calc-row total-row">
+        <span>Order Total</span>
+        <b>${fmt(grandTotal)}</b>
+      </div>
+
+      <div class="checkout-fields">
+        <input class="field-input" id="cust-name" placeholder="Full name" autocomplete="name" required>
+        <input class="field-input" id="cust-phone" placeholder="M-Pesa phone number (e.g. 0712345678)" inputmode="tel" autocomplete="tel" required>
+        <input class="field-input" id="cust-address" placeholder="Delivery town, estate, or landmark" autocomplete="street-address" required>
+      </div>
+
+      <button class="btn-checkout" id="btn-submit-order">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+        Send Order on WhatsApp
+      </button>
+
+      ${CONFIG.paymentLink ? `
+        <a class="btn-paylink" target="_blank" rel="noopener" href="${CONFIG.paymentLink}">
+          Direct Card / M-Pesa Checkout &rarr;
+        </a>
+      ` : ""}
+      
+      <p class="note">Orders are confirmed directly by our team on WhatsApp prior to courier dispatch. You can pay via M-Pesa Till or Card upon confirmation.</p>
+    </div>
+  `;
+
+  saveBag();
+}
+
+function openModal(id) {
+  const item = P.find(x => x.id === parseInt(id, 10));
+  if (!item) return;
+  activeModalProduct = item;
+  modalQty = 1;
+
+  $("modal-visual").innerHTML = ART[item.artKey];
+  $("modal-category").textContent = item.c;
+  $("modal-title").textContent = item.n;
+  $("modal-price").textContent = fmt(item.p);
+  $("modal-desc").textContent = item.full;
+  $("modal-qty-val").textContent = modalQty;
+
+  $("modal-box-list").innerHTML = item.box.map(b => `<li>${b}</li>`).join("");
+
+  $("modal-overlay").classList.add("open");
+}
+
+function closeModal() {
+  $("modal-overlay").classList.remove("open");
+  activeModalProduct = null;
+}
+
+function toggleCart(isOpen) {
+  $("cart").classList.toggle("open", isOpen);
+  $("veil").classList.toggle("open", isOpen);
+}
+
+function handleCheckout() {
+  const nameInput = $("cust-name");
+  const phoneInput = $("cust-phone");
+  const addressInput = $("cust-address");
+
+  if (!nameInput || !phoneInput || !addressInput) return;
+
+  const name = nameInput.value.trim();
+  const phone = phoneInput.value.trim();
+  const address = addressInput.value.trim();
+
+  if (!name || !phone || !address) {
+    alert("Please provide your name, phone number, and delivery location to complete your order.");
+    return;
+  }
+
+  // Validate Kenyan phone format roughly
+  const cleanedPhone = phone.replace(/[^0-9+]/g, "");
+  if (cleanedPhone.length < 9) {
+    alert("Please enter a valid phone number for delivery coordination.");
+    return;
+  }
+
+  const ids = Object.keys(bag).filter(id => bag[id] > 0);
+  const lines = ids.map(id => {
+    const item = P.find(x => x.id === parseInt(id, 10));
+    return `${bag[id]} x ${item.n} (${fmt(item.p * bag[id])})`;
+  });
+
+  const subtotal = getSubtotal();
+  const total = subtotal + deliveryFee;
+  const deliveryDesc = deliveryFee === 250 ? "Nairobi Standard (1-2 days)" : deliveryFee === 350 ? "Countrywide Courier (2-4 days)" : "Mombasa Pickup";
+
+  const msg = [
+    "Hello Soko Edit, I would like to place an order:",
+    "",
+    "--- ORDER ITEMS ---",
+    ...lines,
+    "",
+    `Subtotal: ${fmt(subtotal)}`,
+    `Delivery: ${fmt(deliveryFee)} (${deliveryDesc})`,
+    `Total: ${fmt(total)}`,
+    "",
+    "--- RECIPIENT DETAILS ---",
+    `Name: ${name}`,
+    `Phone: ${phone}`,
+    `Delivery Location: ${address}`,
+    "",
+    "Please confirm stock and dispatch details."
+  ].join("\n");
+
+  const waUrl = `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(msg)}`;
+  window.open(waUrl, "_blank", "noopener");
+}
+
+/* Event Listeners */
+document.addEventListener("click", e => {
+  const target = e.target;
+
+  // Category filter click
+  const catBtn = target.closest("[data-category]");
+  if (catBtn) {
+    currentCategory = catBtn.dataset.category;
+    renderChips();
+    renderGrid();
+    return;
+  }
+
+  // Reset filters
+  if (target.id === "btn-reset-filters") {
+    currentCategory = "All";
+    searchQuery = "";
+    $("search-input").value = "";
+    renderChips();
+    renderGrid();
+    return;
+  }
+
+  // Quick view trigger
+  const viewBtn = target.closest("[data-view]");
+  if (viewBtn) {
+    openModal(viewBtn.dataset.view);
+    return;
+  }
+
+  // Add to bag trigger on card
+  const addBtn = target.closest("[data-add]");
+  if (addBtn) {
+    const id = addBtn.dataset.add;
+    bag[id] = (bag[id] || 0) + 1;
+    const item = P.find(x => x.id === parseInt(id, 10));
+    renderCart();
+    showToast(`${item.n} added to your bag`);
+    return;
+  }
+
+  // Quantity adjust in cart
+  const qtyBtn = target.closest("[data-qty-id]");
+  if (qtyBtn) {
+    const id = qtyBtn.dataset.qtyId;
+    const delta = parseInt(qtyBtn.dataset.delta, 10);
+    bag[id] = (bag[id] || 0) + delta;
+    if (bag[id] <= 0) {
+      delete bag[id];
+    }
+    renderCart();
+    return;
+  }
+
+  // Modal quantity buttons
+  if (target.id === "modal-qty-minus") {
+    if (modalQty > 1) {
+      modalQty--;
+      $("modal-qty-val").textContent = modalQty;
+    }
+    return;
+  }
+  if (target.id === "modal-qty-plus") {
+    modalQty++;
+    $("modal-qty-val").textContent = modalQty;
+    return;
+  }
+
+  // Modal add to bag
+  if (target.id === "modal-add-btn" && activeModalProduct) {
+    bag[activeModalProduct.id] = (bag[activeModalProduct.id] || 0) + modalQty;
+    renderCart();
+    showToast(`${modalQty}x ${activeModalProduct.n} added to bag`);
+    closeModal();
+    toggleCart(true);
+    return;
+  }
+
+  // Modal close
+  if (target.id === "modal-close" || target.id === "modal-overlay") {
+    closeModal();
+    return;
+  }
+
+  // Toast view bag click
+  if (target.id === "toast-view") {
+    $("toast").classList.remove("show");
+    toggleCart(true);
+    return;
+  }
+
+  // Cart open/close triggers
+  if (target.closest("#open")) {
+    toggleCart(true);
+    return;
+  }
+  if (target.closest("#close") || target.id === "veil") {
+    toggleCart(false);
+    return;
+  }
+
+  // Checkout submit
+  if (target.id === "btn-submit-order") {
+    handleCheckout();
+    return;
+  }
+});
+
+// Live Search Input
+$("search-input").addEventListener("input", e => {
+  searchQuery = e.target.value.trim().toLowerCase();
+  renderGrid();
+});
+
+// Sort Selector
+$("sort-select").addEventListener("change", e => {
+  sortOrder = e.target.value;
+  renderGrid();
+});
+
+// Delivery fee selector change
+document.addEventListener("change", e => {
+  if (e.target.id === "delivery-select") {
+    deliveryFee = parseInt(e.target.value, 10);
+    renderCart();
+  }
+});
+
+// Escape key to close modals/drawer
+document.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeModal();
+    toggleCart(false);
+  }
+});
+
+// Initialize
+renderChips();
+renderGrid();
+renderCart();
+</script>
+</body>
+</html>
