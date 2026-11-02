@@ -4,6 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Soko Edit - Trending finds, delivered in Kenya</title>
+<meta name="description" content="A short, tested list of trending products from TikTok: skincare, home, tech and pets. Pay with M-Pesa or card, delivered across Kenya.">
+<meta name="theme-color" content="#1f4d3a">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Soko Edit - Trending finds, delivered in Kenya">
+<meta property="og:description" content="Skincare, home, tech and pet products going round on TikTok right now. Pay with M-Pesa or card. Nairobi in 1-2 days, countrywide 2-4 days.">
+<meta property="og:site_name" content="Soko Edit">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,6 +32,22 @@
   box-sizing: border-box;
   padding-top: env(safe-area-inset-top, 0px);
   padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #141412;
+    --surface: #1c1c19;
+    --surface-alt: #242320;
+    --ink: #efece5;
+    --muted: #9c978c;
+    --line: #2e2d29;
+    --line-strong: #efece5;
+    --accent: #7fc4a0;
+    --accent-hover: #5dab84;
+    --accent-soft: #1a2e23;
+    --on: #10231a;
+    color-scheme: dark;
+  }
 }
 * { box-sizing: border-box; }
 body {
@@ -283,6 +305,42 @@ header .wrap {
 }
 .card:hover {
   border-color: #c4beb3;
+}
+@media (prefers-color-scheme: dark) {
+  .card:hover {
+    border-color: #4a4840;
+  }
+  /* Lighten SVG illustration strokes for dark backgrounds */
+  .tile-wrap svg [stroke="#1c1b19"] {
+    stroke: #c8c3b8;
+  }
+  .tile-wrap svg [fill="#1c1b19"] {
+    fill: #c8c3b8;
+  }
+  .tile-wrap svg [fill="#ffffff"] {
+    fill: #2a2926;
+  }
+  .tile-wrap svg [stroke="#6b675f"] {
+    stroke: #8a857b;
+  }
+  .tile-wrap svg [fill="#e8e2d8"] {
+    fill: #3a3730;
+  }
+  .tile-wrap svg [fill="#d9d2c5"] {
+    fill: #3a3730;
+  }
+  .tile-wrap svg [fill="#fcfbf9"] {
+    fill: #2a2926;
+  }
+  .cart-thumb svg [stroke="#1c1b19"] {
+    stroke: #c8c3b8;
+  }
+  .cart-thumb svg [fill="#1c1b19"] {
+    fill: #c8c3b8;
+  }
+  .cart-thumb svg [fill="#ffffff"] {
+    fill: #2a2926;
+  }
 }
 .tile-wrap {
   position: relative;
@@ -1099,7 +1157,7 @@ const CONFIG = {
 /* Bespoke, authentic product SVGs: Clean technical and studio illustrations */
 const ART = {
   p1: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="#f4efe8"/>
+    <rect width="200" height="200" fill="none"/>
     <!-- Cleanser Bottle -->
     <rect x="25" y="65" width="46" height="95" rx="5" fill="#e8e2d8" stroke="#1c1b19" stroke-width="2.5"/>
     <rect x="38" y="47" width="20" height="18" fill="#ffffff" stroke="#1c1b19" stroke-width="2.5"/>
@@ -1122,7 +1180,7 @@ const ART = {
   </svg>`,
 
   p2: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="#f0eae1"/>
+    <rect width="200" height="200" fill="none"/>
     <!-- Lash Compact Case Opened -->
     <rect x="30" y="45" width="140" height="88" rx="6" fill="#242320" stroke="#1c1b19" stroke-width="2.5"/>
     <rect x="38" y="53" width="124" height="72" rx="4" fill="#ffffff" stroke="#1c1b19" stroke-width="1.5"/>
@@ -1139,7 +1197,7 @@ const ART = {
   </svg>`,
 
   p3: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="#f4ecec"/>
+    <rect width="200" height="200" fill="none"/>
     <!-- Rose Quartz Roller -->
     <!-- Handle -->
     <rect x="74" y="80" width="14" height="65" rx="7" fill="#eab5bb" stroke="#1c1b19" stroke-width="2.5"/>
@@ -1171,7 +1229,7 @@ const ART = {
   </svg>`,
 
   p5: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="#edf2ee"/>
+    <rect width="200" height="200" fill="none"/>
     <!-- Vapor Plume -->
     <path d="M100 50 Q94 38 102 28 Q108 18 98 10" fill="none" stroke="#9bbbb0" stroke-width="2.5" stroke-linecap="round" opacity="0.75"/>
     <path d="M104 48 Q112 36 106 24" fill="none" stroke="#9bbbb0" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
@@ -1191,7 +1249,7 @@ const ART = {
   </svg>`,
 
   p6: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="#e8eced"/>
+    <rect width="200" height="200" fill="none"/>
     <!-- Anodized Matte Gray Power Bank -->
     <rect x="54" y="32" width="92" height="136" rx="14" fill="#343940" stroke="#1c1b19" stroke-width="2.5"/>
     <!-- MagSafe Ring and Alignment Pill -->
@@ -1207,7 +1265,7 @@ const ART = {
   </svg>`,
 
   p7: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="#ebeeed"/>
+    <rect width="200" height="200" fill="none"/>
     <!-- Weighted Charging Base -->
     <rect x="36" y="142" width="128" height="22" rx="5" fill="#2d3238" stroke="#1c1b19" stroke-width="2.5"/>
     <!-- AirPods Recessed Pad -->
@@ -1223,7 +1281,7 @@ const ART = {
   </svg>`,
 
   p8: `<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-    <rect width="200" height="200" fill="#edf2ee"/>
+    <rect width="200" height="200" fill="none"/>
     <!-- Basin Body -->
     <rect x="42" y="68" width="116" height="96" rx="10" fill="#ffffff" stroke="#1c1b19" stroke-width="2.5"/>
     <!-- 304 Stainless Steel Top Bowl -->
